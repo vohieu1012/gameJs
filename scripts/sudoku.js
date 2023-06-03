@@ -1,24 +1,24 @@
-class Person{
+class People{
     constructor(name){
-        this.name=name;
-        this.point=3;
+        this.name = name;
+        this.life = 3;
+        this.isLife= true;
     }
 }
-class Sudoku {
 
-    constructor(container, mode = null, settings,arr) {
-        let tmp = [];
-        for(let i =0; i < length(arr);i++){
-            tmp.push(new Person(arr[i]));
-        }
-        this.people=tmp;
+class Sudoku {
+    constructor(container, mode = null, people, settings) {
         this.mode = mode;
         this.container = container;
-
+        let peoplearr = [];
+        for(let i = 0; i < people.length; i++){
+            peoplearr.push(new People(people[i]))
+        }
+        this.people = peoplearr;
         if (typeof container === 'string')
             this.container = document.querySelector(container);
 
-        this.game = new Game(util.extend(defaultConfig, settings));
+        this.game = new Game(util.extend(defaultConfig, settings), this.people);
 
         this.container.appendChild(this.getGameBoard());
     }

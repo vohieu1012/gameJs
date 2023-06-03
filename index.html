@@ -96,7 +96,15 @@
                     <input type="text" placeholder="Player 3st" id="thirdPlayer">
                     <input type="text" placeholder="Player 4st" id="fourthPlayer">
                 </div>
-                <div class="createPlayer"><button class="create" onclick='createSinglegame($("#gameMode").val(), $("#people1").val(), $("#people2").val(), $("#people3").val(), $("#people4").val())'>Create</button></div>
+                <div class='input-group'>
+                <select class='custom-select' id='gameMode' style="width:20px;">
+                    <option value='normal' selected>Normal</option>
+                    <option value='easy'>Easy</option>
+                    <option value='hard'>Hard</option>
+                    <option value='impossible'>Impossible</option>
+                </select>
+            </div>
+                <div class="createPlayer"><button class="create" >Create</button></div>
                 </div>
              </div>
          `).appendInto('body');
@@ -104,6 +112,8 @@
                 if(checkSubmit()){
                     $("#enterName-window").remove();
                     $("#mask").remove();
+              
+
                 }
             });
          $("#fourthPlayer")[0].addEventListener('keyup', (e) => {
@@ -111,7 +121,7 @@
              if (e.keyCode === 13 && checkSubmit()) {
                  $("#enterName-window").remove();
                  $("#mask").remove();
-                
+
              }
          });
          checkSubmit=()=>{
@@ -134,7 +144,7 @@
                  $("#colorThird").css("background-color","red");
                  $("#nameFourth").append("&nbsp;"+"<p>"+fourthPlayer+"</p>");
                  $("#colorFourth").css("background-color","blue");
-
+                 createSinglegame($("#gameMode").val(), firstPlayer, secondPlayer,thirdPlayer, fourthPlayer);
                 return true;
                 }
                 return false;

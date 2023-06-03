@@ -43,7 +43,7 @@ var defaultConfig = {
 };
 
 class Game {
-    constructor(config) {
+    constructor(config, people) {
         this.config = config;
 
         this.cellMatrix = {};
@@ -51,9 +51,8 @@ class Game {
         this.validation = {};
 
         this.values = [];
-
         this.valuesMatrix = [];
-
+        this.people = people;
         this.resetValidationMatrices();
 
         return this;
@@ -156,6 +155,17 @@ class Game {
         }
         this.checkWinner();
     }
+    checkWin(person, row, col){
+        for (let i = 0; i < 9; i++){
+            if ( this.cellMatrix[row][i].value != this.valuesMatrix[row][i].value){
+                return;
+            }
+            if ( this.cellMatrix[i][col].value != this.valuesMatrix[i][col].value){
+                return;
+            }
+        }
+        
+    }
     checkWinner(IS_LEFT, userId) {
         const opponentScore = games[channel].players[Object.keys(games[channel].players)
                             .filter(i => i !== uuid)].score;
@@ -246,19 +256,19 @@ class Game {
             }
         }
     }
-    validateNumber(num, rowID, colID) {
+    validateNumber(num, rowID, colID, people) {
         let isValid = true;
 
         if (num != this.valuesMatrix[rowID][colID]) {
             isValid = false;
             if (!IS_ONLINE) {
-                life--;
-                if (life <= 0) {
+                people.life--;
+                if (people.life <= 0) {
                     addMsg('YOU LOST, You were wrong 3 times');
                     $('#menu').css('display', 'block');
                     $('#singleMatch').css('display', 'none');
                     $('#singleMatch').empty();
-                    life = 3;
+                    people.life = 3;
                 }
             }
         }
