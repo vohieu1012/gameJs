@@ -30,7 +30,27 @@
     </div>
 
     <div id="singleMatch" style="display: none"></div>
-
+    <div class="playerUser"  style="display: none">
+        <div class="listUser">
+            <p>List Player</p>
+            <div class="playerSwatch">
+               <div class="playerSwatch--name" id="nameFirst"><p>1st:</p> </div>
+               <div class="playerSwatch--color" id="colorFirst"></div>
+            </div>
+            <div class="playerSwatch">
+                <div class="playerSwatch--name" id="nameSecond"><p>2st:</p></div>
+                <div class="playerSwatch--color" id="colorSecond"></div>
+            </div>
+            <div class="playerSwatch">
+                <div class="playerSwatch--name" id="nameThird" ><p>3st:</p></div>
+                <div class="playerSwatch--color" id="colorThird"></div>
+            </div>
+            <div class="playerSwatch">
+                <div class="playerSwatch--name" id="nameFourth"><p>4st:</p></div>
+                <div class="playerSwatch--color"id="colorFourth"></div>
+            </div>
+        </div>
+    </div>
     <div id="menu" style="display:none">
         <div class="lobby-window">
             <h2 style="padding: 20px">Lobby</h2>
@@ -56,27 +76,72 @@
      $(document).ready(function() {
          $('#menu').fadeIn();
          $('#logo').fadeIn();
-
-         if (localStorage.getItem('username')) {
-             myName = localStorage.getItem('username');
-             return;
-         }
+        
+        //  if (localStorage.getItem('username')) {
+        //      myName = localStorage.getItem('username');
+        //      return;
+        //  }
 
          new HTMLBuilder().add(`
              <div id='mask'></div>
              <div id="enterName-window">
-                 <h1>Enter your name:</h1>
-                 <input type="text" placeholder="Name..." id="username_input">
+                 <div><button class="btnClose">x</button></div>
+                 <p>Enter your player name:</p>
+                 <div class="playerInput">
+                <div class="playerInput--name">
+                        <input type="text" placeholder="Player 1st" id="firstPlayer">
+                        <input type="text" placeholder="Player 2st" id="secondPlayer">
+                 </div>
+                 <div class="playerInput--name">
+                    <input type="text" placeholder="Player 3st" id="thirdPlayer">
+                    <input type="text" placeholder="Player 4st" id="fourthPlayer">
+                </div>
+                <div class="createPlayer"><button class="create" onclick='createSinglegame($("#gameMode").val(), $("#people1").val(), $("#people2").val(), $("#people3").val(), $("#people4").val())'>Create</button></div>
+                </div>
              </div>
          `).appendInto('body');
-
-         $("#username_input")[0].addEventListener('keyup', (e) => {
-             if (e.keyCode === 13 && $("#username_input").val()) {
-                 myName = $("#username_input").val();
+            $(".create").click(()=>{
+                if(checkSubmit()){
+                    $("#enterName-window").remove();
+                    $("#mask").remove();
+                }
+            });
+         $("#fourthPlayer")[0].addEventListener('keyup', (e) => {
+            
+             if (e.keyCode === 13 && checkSubmit()) {
                  $("#enterName-window").remove();
                  $("#mask").remove();
-                 localStorage.setItem('username', myName);
+                
              }
+         });
+         checkSubmit=()=>{
+                firstPlayer = $("#firstPlayer").val();
+                secondPlayer = $("#secondPlayer").val();
+                thirdPlayer = $("#thirdPlayer").val();
+                fourthPlayer = $("#fourthPlayer").val();
+                if(firstPlayer && secondPlayer && thirdPlayer &&fourthPlayer ){
+                localStorage.setItem('firstPlayer', firstPlayer);
+                 localStorage.setItem('secondPlayer', secondPlayer);
+                 localStorage.setItem('thirdPlayer', thirdPlayer);
+                 localStorage.setItem('fourthPlayer', fourthPlayer);
+                 var $div = $('.menu').appendTo('.lobby-window');
+                 $('.playerUser').css("display","block");
+                 $("#nameFirst").append("&nbsp;"+"<p>"+firstPlayer+"</p>");
+                 $("#colorFirst").css("background-color","black");
+                 $("#nameSecond").append("&nbsp;"+"<p>"+secondPlayer+"</p>");
+                 $("#colorSecond").css("background-color","white");
+                 $("#nameThird").append("&nbsp;"+"<p>"+thirdPlayer+"</p>");
+                 $("#colorThird").css("background-color","red");
+                 $("#nameFourth").append("&nbsp;"+"<p>"+fourthPlayer+"</p>");
+                 $("#colorFourth").css("background-color","blue");
+
+                return true;
+                }
+                return false;
+         }
+         $(".btnClose").click(()=>{
+            $("#enterName-window").remove();
+            $("#mask").remove();
          });
      });
 </script>

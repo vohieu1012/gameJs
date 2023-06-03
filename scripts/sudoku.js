@@ -1,5 +1,17 @@
+class Person{
+    constructor(name){
+        this.name=name;
+        this.point=3;
+    }
+}
 class Sudoku {
-    constructor(container, mode = null, settings) {
+
+    constructor(container, mode = null, settings,arr) {
+        let tmp = [];
+        for(let i =0; i < length(arr);i++){
+            tmp.push(new Person(arr[i]));
+        }
+        this.people=tmp;
         this.mode = mode;
         this.container = container;
 

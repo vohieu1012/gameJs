@@ -72,7 +72,7 @@ function startGame2(mySide, channel) {
     }
 }
 
-function startGame(mode = null) {
+function startGame(mode = null,array) {
     IS_ONLINE = false;
     $('#menu').fadeOut();
     $('#singleMatch').fadeIn();
@@ -82,12 +82,15 @@ function startGame(mode = null) {
         $('#singleMatch').fadeOut();
         $('#menu').fadeIn();
         $('#singleMatch').empty();
+        $(".playerUser").css("height","68vh");
     }))
 	.appendInto('#singleMatch');
-
-    game = new Sudoku('#singleMatch', mode);
+    game = new Sudoku('#singleMatch', mode,array);
     game.start();
 	controls();
+    if($('#singleMatch').css("display") !=="none"){
+        $(".playerUser").css("height","47vh");
+    }
 }
 
 function createSinglegame(mode) {

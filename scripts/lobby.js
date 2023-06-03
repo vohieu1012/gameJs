@@ -17,9 +17,12 @@ function createGame() {
         <div id='mask' onclick='$("#createLobby").remove(); $(this).remove()'></div>
         <div id='createLobby'>
             <h1>Create Lobby</h1>
-            <input type='text' placeholder='Game name...' value="${myName}'s game" id='hostLobby'>
-            <div class='input-group mt-2' style='width:340px !important'>
-                <select class='custom-select' id='gameMode'>
+            <input type='text' placeholder='1st player name' value="${firstPlayer}'s game" id='hostLobby'>
+            <input type='text' placeholder='2st player name.' value="${secondPlayer}'s game" id='hostLobby'>
+            <input type='text' placeholder='3st player name' value="${thirdPlayer}'s game" id='hostLobby'>
+            <input type='text' placeholder='4st player name.' value="${fourthPlayer}'s game" id='hostLobby'>
+            <div class='input-group'>
+                <select class='custom-select' id='gameMode' style="width:20px;">
                     <option value='normal' selected>Normal</option>
                     <option value='easy'>Easy</option>
                     <option value='hard'>Hard</option>

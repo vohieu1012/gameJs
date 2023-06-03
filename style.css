@@ -146,7 +146,7 @@ tr:nth-child(6) input {
 
 #createLobby, #enterName-window {
     margin: 0 auto;
-    width: 400px;
+    width: 450px;
     height: 250px;
     position: absolute;
     top: 30%;
@@ -156,6 +156,10 @@ tr:nth-child(6) input {
     padding: 20px;
     background: #7f3f74;
     text-align: center;
+    border-radius: 4px;
+}
+#enterName-window p{
+  font-size: 30px;
 }
 
 #createLobby button {
@@ -186,11 +190,6 @@ tr:nth-child(6) input {
     font-size: 25px;
     color: white;
     padding-top: 30px;
-}
-
-#createLobby input, #joinLobby input, #enterName-window input {
-    padding: 20px;
-    font-size: 20px;
 }
 
 #chatWindow ul {
@@ -292,4 +291,87 @@ tr:nth-child(6) input {
   	0%   { margin-top: 0px; }
 	50%  { margin-top: 15px; }
 	100%  { margin-top: 0px; }
+}
+
+
+/* css input name */
+.playerInput {
+  margin-top: 35px;
+}
+.playerInput--name {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.playerInput--name input {
+  height: 32px;
+  border-radius: 4px;
+  border: 1px solid;
+  padding: 12px 12px;
+  margin-bottom: 5px;
+}
+.playerInput--name input:first-child{
+  margin-right: 5px;
+}
+.createPlayer button {
+  border-radius: 4px;
+  border: 1px solid #FFFFFF;
+  padding: 5px 15px;
+  margin-top: 10px;
+  background-color: #FFFFFF;
+}
+.createPlayer button:hover{
+  cursor: pointer;
+  background-color: #3ef77b;
+  border:1px solid #3ef77b ;
+}
+.createPlayer button:focus{
+  outline: none;
+}
+.btnClose{
+  position: absolute;
+  right: 0;
+  top: 0;
+  border: 1px solid;
+}
+/* custom select option */
+.input-group {
+  margin-top: 20px;
+  display: flex;
+  width: 100px;
+}
+.input-group .custom-select {
+  width: 30x !important;
+}
+/* custom list User */
+.playerUser{
+  width: 250px;
+  position: absolute;
+  right:75px;
+  height: 68vh;
+
+}
+.playerUser .listUser{
+  width: 100%;
+  height: 30vh;
+  background-color: #bfc1ca;
+  border-radius: 5px;
+  padding: 15px 15px;
+}
+.playerUser .listUser .playerSwatch{
+  display: flex;
+  height: 30px;
+  margin-bottom: 10px;
+}
+.playerUser .listUser .playerSwatch .playerSwatch--name{
+  width: 50%;
+  display: flex;
+  height: 30px;
+}
+.playerSwatch--name p{
+  font-size: 14px;
+}
+.playerUser .listUser .playerSwatch .playerSwatch--color{
+  height: 20px;
+  width: 20px;
 }
